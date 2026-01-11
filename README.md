@@ -1,7 +1,7 @@
 # nanoformulation-ML
 ML analysis of pH-responsive drug release (PRIVATE - pre-publication)
  
-## 🔒 Status: Work in Progress - Private Repository
+##  Status: Work in Progress - Private Repository
 
 **System:** Citral-loaded TiO₂@Ag Nanoparticles  
 **Application:** pH-responsive drug delivery for necrotic tissue targeting  
