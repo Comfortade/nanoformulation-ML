@@ -1,126 +1,33 @@
-# nanoformulation-ML
-ML analysis of pH-responsive drug release (PRIVATE - pre-publication)
- 
-##  Status: Work in Progress - Private Repository
+# Physics-Informed Graph Neural Networks (PIGNN) for Bio-Nanotech
 
-**System:** Citral-loaded TiO₂@Ag Nanoparticles  
-**Application:** pH-responsive drug delivery for necrotic tissue targeting  
-**Analysis:** Machine learning for drug release prediction
+**A "Digital Twin" framework for predicting phytochemical release from Ag-doped TiO₂ nanoparticles using Chemical Topology and Physical Laws.**
 
+---
 
 ##  Project Overview
+This repository contains the complete computational pipeline for modeling the pH-responsive release of bioactive extracts from *Costus lucanusianus*-mediated nanoparticles. 
 
-Machine learning analysis of pH-responsive drug release from citral-loaded nanoparticles. This work compares classical kinetic models with modern ML approaches.
+Unlike standard "black-box" machine learning, this project utilizes a **Physics-Informed Graph Neural Network (PIGNN)**. The model "reads" the 2D molecular structure of 13 different phytochemicals and ensures all predictions stay within the physical boundaries of the **Korsmeyer-Peppas** diffusion law.
 
-### Key Results
--  **ML Performance:** R² = 0.988 (Gaussian Process)
--  **Classical Models:** R² = 0.165 (average)
--  **pH Selectivity:** 750-fold higher release at pH 6.5 vs pH 7.4
--  **Safety Profile:** 82% less release at physiological pH
-
----
-
-## Dataset
-- **Conditions:** pH 5.5, 6.5, 7.4
-- **Time Points:** 0, 6, 12, 24, 48, 96 hours
-- **Samples:** n = 90
-- **Formulations:** Nanoparticle vs Free drug
-
-**Data source:** `data/Smart_Nano.xlsx`
-
----
-
-## Analysis Notebooks
-
-### Main Analysis
-- **[ML Analysis Notebook](notebooks/citral.ipynb)** - Complete machine learning pipeline
-  - Data preprocessing
-  - Classical model fitting
-  - ML model training and comparison
-  - Feature importance analysis
-  - Statistical validation
-
----
-
-##  Analysis Methods
-
-### Classical Models
-- Zero-order, First-order, Higuchi, Korsmeyer-Peppas
-
-### Machine Learning
-- Gaussian Process Regression (R²=0.988)
-- Gradient Boosting (R²=0.959)
-- Random Forest (R²=0.790)
-
-### Statistical Analysis
-- Feature importance
-- AUC comparison
-- Interaction effects (pH × Time × Formulation)
-
----
-
-##  Main Findings
-
-### Model Comparison
-| Model Type | Average R² |
-|------------|-----------|
-| Machine Learning | 0.988 |
-| Classical Models | 0.165 |
-
-**Improvement: +499%**
-
-### pH-Dependent Release (AUC₀₋₉₆)
-| pH | Nanoparticle | Free Drug | Difference |
-|----|--------------|-----------|------------|
-| 5.5 | 49.5 | 52.9 | -6.4% |
-| 6.5 | 4859.9 | 4715.9 | +3.1% |
-| 7.4 | 12.0 | 31.2 | -61.5%* |
-
-*Statistically significant (p=0.02)
-
+### Key Scientific Innovations
+* **Graph-Molecular Encoding:** We represent the plant extract's chemical complexity by converting SMILES strings into molecular graphs (Atoms as nodes, Bonds as edges).
+* **Physics-Constraint:** A custom loss function regularizes the model using mass-transport equations, preventing overfitting and ensuring scientific validity.
+* **Predictive Digital Twin:** The system can simulate drug release in "unseen" environments, such as a precise pH of 6.3, acting as a virtual laboratory.
 ---
 
 ##  Repository Structure
-
-```
-ph-responsive-nanoformulation-ml/
-├── README.md                  # This file
+```text
+nanoformulation-ML/
 ├── data/
-│   └── Smart_Nano.xlsx       # Raw experimental data
+│   ├── phytochemical_inventory.csv     # 13 bioactives with SMILES & GC-MS data
+│   └── nanoparticle_release_data.csv   # Raw experimental release kinetics
 ├── notebooks/
-│   └── ml_analysis.ipynb     # Main analysis notebook
-└── results/
-    └── figures/              # Generated plots and visualizations
-```
+│   ├── 01_classical_modeling.ipynb      # Baseline kinetic fits (Higuchi, etc.)
+│   ├── 02_smiles_graph_encoding.ipynb   # Molecular visualization & GNN preprocessing
+│   └── 03_pignn_predictive_twin.ipynb   # Final PIGNN model & simulation
+├── exports/
+│   ├── models/                         # Trained PIGNN weights (.pth)
+│   └── figures/                        # R² plots, Molecular grids, and Architecture
+├── requirements.txt                    # Python environment dependencies
+└── README.md                           # Project documentation
 
----
-
-##  Tools & Technologies
-
-- **Platform:** Google Colab
-- **Language:** Python 3.10+
-- **Key Libraries:** scikit-learn, scipy, pandas, matplotlib, seaborn
-
----
-
-##  How to Run
-
-1. Open the notebook in Google Colab: [ml_analysis.ipynb](notebooks/citral.ipynb)
-2. Upload `Smart_Nano.xlsx` when prompted
-3. Run all cells sequentially
-
----
-
-##  Notes
-
-This is ongoing research. Methods and results are subject to change as analysis progresses.
-
----
-
-##  Confidentiality
-
-Unpublished research - do not share without permission.
-
----
-
-**Last Updated:** January 2026
