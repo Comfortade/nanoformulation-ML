@@ -205,3 +205,22 @@ cython_debug/
 marimo/_static/
 marimo/_lsp/
 __marimo__/
+
+# Private experimental inputs
+/data/
+
+# Local outputs and archives
+/exports/
+*.zip
+*.pt
+*.pth
+
+# Superseded notebooks
+/notebooks/Classical_Modeling.ipynb
+/notebooks/PIGNN_Modeling.ipynb
+/notebooks/SMILES_and_Graph_Encoding.ipynb
+
+# Local Python environment
+.venv/
+__pycache__/
+.ipynb_checkpoints/
